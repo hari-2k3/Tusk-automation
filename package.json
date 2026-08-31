@@ -1,0 +1,19 @@
+{
+  "name": "tuskmelon-carousel-system",
+  "version": "1.0.0",
+  "description": "Renders Tuskmelon social carousels from a monthly content workbook. One slide = one PNG.",
+  "private": true,
+  "scripts": {
+    "setup": "npm install && npx playwright install chromium",
+    "fonts": "node src/fetch-fonts.js",
+    "parse": "node src/parse-content.js content/september-2026.xlsx",
+    "dryrun": "node src/dryrun.js",
+    "render": "node src/render.js",
+    "verify": "node src/verify.js",
+    "build": "npm run parse && npm run render && npm run verify"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0",
+    "xlsx": "^0.18.5"
+  }
+}

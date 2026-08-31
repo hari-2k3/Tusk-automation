@@ -1,0 +1,31 @@
+<!--
+  Single-slide template. Rendered once per slide row.
+  Double-brace tokens are substituted by src/render.js.
+
+  THIS FILE RENDERS EXACTLY ONE SLIDE. Never loop slides inside it.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>{{BASE_CSS}}</style>
+<style>{{EXTRA_CSS}}</style>
+</head>
+<body>
+  <div class="slide {{SLIDE_MODIFIER}}">
+    {{CONTENT}}
+    {{SLIDE_NO}}
+    {{BRAND}}
+  </div>
+
+<!-- SVG defs for hand-drawn annotation strokes -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <path id="ellipse-stroke"
+      d="M 12,52 C 12,20 90,6 168,8 C 250,10 316,26 318,54 C 320,84 244,102 162,100 C 82,98 14,86 12,52 C 11,38 30,24 62,16" />
+    <path id="underline-stroke"
+      d="M 4,14 C 70,4 160,4 236,10 C 258,12 274,15 292,19" />
+  </defs>
+</svg>
+</body>
+</html>

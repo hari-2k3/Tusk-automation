@@ -1,0 +1,297 @@
+/* ============================================================
+   Tuskmelon carousel — base stylesheet
+   Canvas is ALWAYS 1080 x 1350. One slide per rendered page.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Caveat:wght@400;600&display=swap');
+
+:root {
+  --white:      #FFFFFF;
+  --ink:        #141414;
+  --ink-soft:   #6B6B6B;
+  --grey-line:  #E4E4E4;
+  --grey-fill:  #F4F4F4;
+
+  --magenta:    #EC1E79;
+  --purple:     #7C4DFF;
+  --green:      #8BC34A;
+  --yellow:     #F5B800;
+  --cyan:       #22CFD4;
+
+  --margin:     96px;
+
+  --font-sans:  'Poppins', sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+  --font-hand:  'Caveat', cursive;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 1080px;
+  height: 1350px;
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.slide {
+  position: relative;
+  width: 1080px;
+  height: 1350px;
+  background: var(--white);
+  padding: var(--margin);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---------- vertical placement ---------- */
+.slide--center  { justify-content: center; }
+.slide--top     { justify-content: flex-start; }
+.slide--between { justify-content: space-between; }
+
+/* ---------- type ---------- */
+.hook {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 118px;
+  line-height: 0.98;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.hook--sm { font-size: 96px; }
+.hook--lg { font-size: 132px; }
+
+/* Set B hooks use Poppins, not the serif */
+.hook--sans {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 82px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.subhook {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 1.4;
+  color: var(--ink);
+  margin-top: 40px;
+}
+
+.header {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.header--sm { font-size: 46px; }
+
+.quote {
+  font-family: var(--font-serif);
+  font-size: 80px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.body--soft { color: var(--ink-soft); }
+.body--sm   { font-size: 32px; }
+
+.label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 23px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.hand {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 1.1;
+  color: var(--magenta);
+}
+
+.stack > * + * { margin-top: 44px; }
+.stack--tight > * + * { margin-top: 28px; }
+
+/* ---------- accent utilities ---------- */
+.accent  { color: var(--magenta); }
+.accent2 { color: var(--purple); }
+
+/* highlight block behind a word */
+.hl {
+  position: relative;
+  display: inline-block;
+  padding: 0 12px;
+  z-index: 0;
+}
+.hl::before {
+  content: '';
+  position: absolute;
+  left: -6px; right: -6px;
+  top: 14%; bottom: 12%;
+  background: var(--magenta);
+  z-index: -1;
+  transform: rotate(-0.4deg);
+}
+.hl--ink { color: var(--white); }
+
+/* hand-drawn circle around a word */
+.circled { position: relative; display: inline-block; padding: 0 18px; }
+.circled svg {
+  position: absolute;
+  left: -14px; top: -18%;
+  width: calc(100% + 28px);
+  height: 136%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* uneven underline */
+.underlined { position: relative; display: inline-block; }
+.underlined svg {
+  position: absolute;
+  left: 0; bottom: -18px;
+  width: 100%; height: 24px;
+  overflow: visible;
+}
+
+.struck { position: relative; display: inline-block; }
+.struck::after {
+  content: '';
+  position: absolute;
+  left: -4px; right: -4px; top: 52%;
+  height: 5px;
+  background: var(--magenta);
+  transform: rotate(-1.2deg);
+}
+
+/* ---------- UI mimicry (Set B) ---------- */
+.card {
+  background: var(--white);
+  border: 1px solid var(--grey-line);
+  border-radius: 18px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+  padding: 36px 40px;
+}
+.card--flat { box-shadow: none; }
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--white);
+  border: 1px solid var(--grey-line);
+  border-radius: 999px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+  padding: 26px 36px;
+  font-family: var(--font-sans);
+  font-size: 32px;
+  color: var(--ink);
+}
+
+.checkrow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-sans);
+  font-size: 32px;
+  color: var(--ink);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--grey-line);
+}
+.checkrow:last-child { border-bottom: none; }
+
+.bar-track {
+  width: 100%;
+  height: 34px;
+  background: var(--grey-fill);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.bar-fill { height: 100%; background: var(--magenta); border-radius: 999px; }
+.bar-fill--purple { background: var(--purple); }
+.bar-fill--grey   { background: #C9C9C9; }
+
+.chip {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 26px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: var(--grey-fill);
+  color: var(--ink-soft);
+}
+
+/* dashed selection box with corner handles */
+.selection { position: relative; display: inline-block; padding: 28px 34px; }
+.selection::before {
+  content: '';
+  position: absolute; inset: 0;
+  border: 3px dashed var(--ink);
+}
+.selection .handle {
+  position: absolute;
+  width: 20px; height: 20px;
+  background: var(--ink);
+}
+.selection .handle.tl { left: -10px;  top: -10px; }
+.selection .handle.tr { right: -10px; top: -10px; }
+.selection .handle.bl { left: -10px;  bottom: -10px; }
+.selection .handle.br { right: -10px; bottom: -10px; }
+
+/* the overlap device — logo-derived */
+.overlap { position: relative; height: 420px; }
+.overlap .blob {
+  position: absolute;
+  width: 340px; height: 340px;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  opacity: 0.72;
+}
+.overlap .blob--a { background: var(--magenta); left: 120px; top: 40px; }
+.overlap .blob--b { background: var(--purple);  left: 380px; top: 40px; }
+
+/* two-column comparison */
+.cols { display: flex; gap: 56px; }
+.cols > * { flex: 1; }
+.col--muted { opacity: 0.42; }
+
+/* ---------- furniture ---------- */
+.slide-no {
+  position: absolute;
+  left: var(--margin);
+  bottom: var(--margin);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: 0.06em;
+  color: var(--magenta);
+}
+
+.brand {
+  position: absolute;
+  right: var(--margin);
+  bottom: var(--margin);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 26px;
+  color: var(--ink-soft);
+}
+
+.rule { width: 120px; height: 4px; background: var(--magenta); }
